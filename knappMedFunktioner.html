@@ -1,0 +1,124 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Min första knapp</title>
+    
+    <script>
+      
+           function ropar(from,to){
+      
+             let instruction = getInstruction(from); //Hämtar en instruktion beroende av vem som ropar
+      
+             if(instruction[0]) doInstruction(to,instruction);// kolla om det kommit någon instruktion eller inte 
+                                                              // och om det är så ropa
+                                                              // på ett program som utför instruktionen.
+          }
+          
+          function getInstruction(vem){  //den som ropar skickar med något meddelande om vem det är som ropar sparas i en parameter som heter vem
+            
+            /*
+            Här inne i funktionen fungerar parametern vem precis samma sak som en variabel
+             Skillnaden är att som programmerare kallar man allt som skickas in i en del för parametrar
+             och dessa behöver man inte deklarera.
+             I språket javascript så är det förutbestämt hur man skriver när man deklarerar en funktion 
+             och då har man valt att låta programmeraren slippa göra detta.
+            */
+
+           
+            let instruction = [];  // en lista med instruktioner
+            instruction.length=0;  // försäkrar mig om att listan är tom
+            instruction.push(false); // Ger första platsen i listan värdet false
+  
+            
+            /* I många språk finns det något som kallas för konstanter.
+               en konstant är ett värde som inte ska ändras under programmets körning
+               det finns dock något som heter const i senare versioner av javascript men
+               det betyder att variabel namnet är konstant och går inte ändra på senare.
+
+               För att i javascript tala om att man tämkt använda en variabel som en konstant
+               med ett konstant värde så använder man helt enkelt en stor bokstav i början på namnet.
+            */
+           
+
+           let PappasSvaraInstruktion = "säg till när du är klar" ; 
+            let PappasMeddelande = "städa rummet";
+            let MammasMeddelande = "vad gör du ?";
+            
+            
+            /*
+            if (vem == 'pappa') {
+              vem var lika med pappa så det som står här kommer köras
+            }else{
+              om vem är allt annat än pappa så kommer det som står här
+              köras.
+            }
+            
+            Vill man ha ännu mer alternativ och så finns det något som heter switch */
+            
+            /*variabler som deklareras här inne i en funktion stannar där och kan 
+            inte nås någon annan stans i programmet.*/
+            
+            
+            switch (vem) {     /* om vem har något av följande värden*/
+              
+              case 'pappa':   
+              /*
+              samma som if(vem=='pappa')
+              */ 
+             instruction[0] = true; // Ändtrar första elementet i listan så det får värdet true
+             instruction.push(PappasMeddelande); //puttar in PappasMeddelande i en lista
+             instruction.push(PappasSvaraInstruktion); //puttar in PappasSvaraInstruktion i samma lista
+             break;
+             
+             case 'mamma':
+               /*
+               samma som if(vem=='pappa')
+               */ 
+              instruction[0] = true; // Ändtrar första elementet i listan så det får värdet true
+              instruction.push(MammasMeddelande);
+              break;
+              
+              default:
+                // alla andra värden än mamma eller pappa som vem kan innehålla
+                // kommer göra att allt i denna delen kommer köras.
+                break;
+              }
+              
+              return instruction;
+              
+            }
+            
+            function doInstruction(to,instruction){
+            
+              console.log(to + " " +instruction[1]); // ropa första meddelandet
+              
+              if(instruction.length>2){ // om det finns en tredje instruktion
+               console.log(instruction[2]);  // visar instruktionen
+               
+               if(instruction[2]=="säg till när du är klar"){
+                 console.log("Nu är jag klar med "+instruction[2]);
+               }
+
+
+              }
+              
+            }
+            
+            
+            </script>
+</head>
+<body>
+  
+  <button onclick="ropar('pappa','kalle')">Pappa ropar</button>
+  <button onclick="ropar('mamma','kalle')">Mamma ropar</button>
+
+</body>
+</html>
